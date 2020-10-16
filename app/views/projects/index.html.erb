@@ -1,1 +1,14 @@
 <h1>Welcome to my Awesome Web App</h1>
+
+
+<% @projects.each do |project| %>
+  <div>
+    <h1><%= project.name %></h1><br />
+    <i><%= project.description %></i><br />
+    <p><%= project.plan %></p><br />
+    <p><%= project.planhours %></p><br />
+    <p><%= project.thours %></p><br />
+  </div>
+
+  <hr />
+<% end %>
