@@ -1,26 +1,43 @@
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Project</th>
-      <th scope="col">Description</th>
-      <th scope="col">Plan</th>
-      <th scope="col">Plan Hours</th>
-      <th scope="col">Hours Worked</th>
-    </tr>
-  </thead>
-  <tbody>
-  	<% @projects.each do |project| %>
-		  <div><tr>
-		    <td><p><%= project.name %></p></td>
-		    <td><i><%= project.description %></i></td>
-		    <td><p><%= project.plan %></p></td>
-		    <td><p><%= project.planhours %></p></td>
-		    <td><p><%= project.thours %></p></td>
-		  </tr></div>
 
-		  <hr />
-	<% end %>
-  </tbody>
-</table>
+<div class = "row">
+
+	<div class="col"> 
+		<button id="myBtn">Log Hours</button>
+		<%= link_to "Log Hours", '#', class: 'nav-link' %>
+	</div>
+	<div class="col"> 
+		<button> <%= link_to "Add Project", new_project_path , class: 'nav-link' %> </button>
+	</div>
+</div>
+
+
+<div class = "row">
+	<div class="col"> 
+		<table class="table table-hover">
+		  <thead>
+		    <tr>
+		      <th scope="col">Project <i class="fa fa-plus-circle"></i></th>
+		      <th scope="col">Description</th>
+		      <th scope="col">Plan</th>
+		      <th scope="col">Plan Hours</th>
+		      <th scope="col">Hours Worked</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	<% @projects.each do |project| %>
+				  <div><tr>
+				    <td><p><%= project.name %></p></td>
+				    <td><i><%= project.description %></i></td>
+				    <td><p><%= project.plan %></p></td>
+				    <td><p><%= project.planhours %></p></td>
+				    <td><p><%= project.thours %></p></td>
+				  </tr></div>
+
+				  <hr />
+			<% end %>
+		  </tbody>
+		</table>
+	</div>
+</div>
 
