@@ -1,4 +1,7 @@
 class HourlogsController < ApplicationController
+
+before_action :authenticate_user!
+
   def index
   	@hourlogs = Hourlog.all
   	@title = "Hello"
@@ -9,8 +12,8 @@ class HourlogsController < ApplicationController
   end
 
 	def create
-	  Hourlog.create(hourlog_params)
-	  redirect_to root_path
+	  current_user.hourlogs.create(hourlog_params)
+	  redirect_to hourlogs_path
 	end
 
 	private

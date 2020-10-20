@@ -1,5 +1,6 @@
 <div class= "container"> 
-<h1 class= "">Hours Log</h1>
+
+<h2 class= "p-3">Log your hours :) </h2>
 
 
 <div class = "row">
@@ -18,6 +19,7 @@
 		      <th scope="col">Project</th>
 		      <th scope="col">Description</th>
 		      <th scope="col">Hours</th>
+		      <th scope="col">User</th>
 		    </tr>
 		  </thead>
 		  <tbody class = "booyah-box">
@@ -27,6 +29,7 @@
 				    <td><p><%= h.project %></p></td>
 				    <td><p><%= h.description %></p></td>
 				    <td><p><%= h.hours %></p></td>
+				    <td><p> <% if h.user.present? %> <small><%= h.user.email %></small> <%end%></p></td>
 				  </tr></div>
 			<% end %>
 		  </tbody>
