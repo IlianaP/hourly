@@ -1,0 +1,2 @@
+class Hourlog < ApplicationRecord
+end

@@ -1,0 +1,37 @@
+<h1>Hours Log</h1>
+
+
+<h1><%= @title %></h1>
+
+<div class = "row">
+	<div class="col"> 
+		<button> <%= link_to "Log Hours", new_hourlog_path , class: 'nav-link' %> </button>
+	</div>
+</div>
+
+
+<div class = "row">
+	<div class="col"> 
+		<table class="table table-hover">
+		  <thead>
+		    <tr>
+		      <th scope="col">Name <i class="fa fa-plus-circle"></i></th>
+		      <th scope="col">Project</th>
+		      <th scope="col">Description</th>
+		      <th scope="col">Hours</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	<% @hourlogs.each do |h| %>
+				  <div><tr>
+				    <td><p><%= h.name %></p></td>
+				    <td><p><%= h.project %></p></td>
+				    <td><p><%= h.description %></p></td>
+				    <td><p><%= h.hours %></p></td>
+				  </tr></div>
+			<% end %>
+		  </tbody>
+		</table>
+	</div>
+</div>
+
