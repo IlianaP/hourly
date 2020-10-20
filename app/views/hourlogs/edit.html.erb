@@ -1,16 +1,15 @@
 <div class= "container p-3"> 
 <div class="booyah-box col-10 offset-1">
-  <h1>Log your hours</h1>
+  <h1>Edit your entry</h1>
   <%= simple_form_for @hourlog do |f| %>
     <%= f.input :name %>
-    <%= f.input :project, collection: @projects %>
+    <%= f.input :project %>
     <%= f.input :description %>
-    <%= f.input :hours %>
-	<br />
-	<%= f.input :date, as: :date, start_year: Date.today.year - 1,
+    <%= f.input :hours %> <br />
+    <%= f.input :date, as: :date, start_year: Date.today.year - 1,
                               end_year: Date.today.year + 1, discard_day: false,
                               order: [:day, :month, :year] %>
-    <%= f.submit 'Create' %>
+    <%= f.submit 'Update' %>
   <% end %>
 </div>
 </div>

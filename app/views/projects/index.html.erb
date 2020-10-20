@@ -1,13 +1,9 @@
-
+<div class= "container"> 
 
 <div class = "row">
-
-	<div class="col"> 
-		<button id="myBtn">Log Hours</button>
-		<%= link_to "Log Hours", '#', class: 'nav-link' %>
-	</div>
-	<div class="col"> 
-		<button> <%= link_to "Add Project", new_project_path , class: 'nav-link' %> </button>
+	<h2 class= "p-3 col-10"> Projects </h2>
+	<div class="p-3 col-2"> 
+		<%= link_to "Add Project", new_project_path , class: 'btn btn-primary' %>
 	</div>
 </div>
 
@@ -26,18 +22,18 @@
 		  </thead>
 		  <tbody>
 		  	<% @projects.each do |project| %>
-				  <div><tr>
+				  <div>
 				    <td><p><%= project.name %></p></td>
 				    <td><i><%= project.description %></i></td>
 				    <td><p><%= project.plan %></p></td>
 				    <td><p><%= project.planhours %></p></td>
 				    <td><p><%= project.thours %></p></td>
 				  </tr></div>
-
-				  <hr />
 			<% end %>
 		  </tbody>
 		</table>
 	</div>
 </div>
+</div>
+
 

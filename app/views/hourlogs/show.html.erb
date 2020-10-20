@@ -1,0 +1,12 @@
+<h1>Welcome to the show page</h1>
+
+<div class="booyah-box col-10 offset-1">
+  <h1><%= @hourlog.name %></h1>
+  <i><%= @hourlog.description %></i>
+  <br/><br/>
+  <p><%= @hourlog.description %></p>
+  <p><%= @hourlog.hours %></p>
+  <div class="float-right">
+    <%= link_to 'Edit', edit_hourlog_path(@hourlog), class: 'btn btn-primary' %>
+  </div>
+</div>
