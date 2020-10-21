@@ -13,21 +13,25 @@
 		<table class="table table-hover">
 		  <thead>
 		    <tr>
-		      <th scope="col">Project <i class="fa fa-plus-circle"></i></th>
+		      <th scope="col">ID</th>
+		      <th scope="col">Name <i class="fa fa-plus-circle"></i></th>
 		      <th scope="col">Description</th>
 		      <th scope="col">Plan</th>
 		      <th scope="col">Plan Hours</th>
 		      <th scope="col">Hours Worked</th>
+		      <th scope="col">Actions (test)</th>
 		    </tr>
 		  </thead>
 		  <tbody>
 		  	<% @projects.each do |project| %>
 				  <div>
+				  	<td><p><%= project.id %></p></td>
 				    <td><p><%= project.name %></p></td>
 				    <td><i><%= project.description %></i></td>
 				    <td><p><%= project.plan %></p></td>
 				    <td><p><%= project.planhours %></p></td>
 				    <td><p><%= project.thours %></p></td>
+				    <td><p><%= project.id %></p></td>
 				  </tr></div>
 			<% end %>
 		  </tbody>
