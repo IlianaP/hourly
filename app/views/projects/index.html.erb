@@ -30,7 +30,7 @@
 				    <td><i><%= project.description %></i></td>
 				    <td><p><%= project.plan %></p></td>
 				    <td><p><%= project.planhours %></p></td>
-				    <td><p><%= project.thours %></p></td>
+				    <td><p><%= @hourlogs.where(project_id: project.id).sum(:hours) %> </p></td>
 				    <td><p><%= project.id %></p></td>
 				  </tr></div>
 			<% end %>
@@ -39,5 +39,6 @@
 	</div>
 </div>
 </div>
+
 
 

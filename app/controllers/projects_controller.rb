@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
 
 	def index 
 		@projects = Project.all
+		@hourlogs = Hourlog.all
 		
 	end
 

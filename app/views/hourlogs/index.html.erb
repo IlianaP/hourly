@@ -3,7 +3,7 @@
 <div class = "row">
 	<h2 class= "p-3 col-10">Hour Log </h2>
 	<div class="p-3 col-2"> 
-		<%= link_to "Log Hours", new_hourlog_path , class: 'btn btn-info' %>
+		<%= link_to "Log Hours", new_hourlog_path , class: 'btn btn-primary' %>
 	</div>
 </div>
 
@@ -26,7 +26,7 @@
 		  	<% @hourlogs.each do |h| %>
 				  <div><tr>
 				  	<td><p> <%= h.date.strftime("%B %C, %Y") %> </p></td>
-				    <td><p><%= h.name %></p></td>
+				    <td><p><%= h.name %> <%= h.id %></p></td>
 				    <td><p><%= h.project_id %></p></td>
 				    <td><p><%= h.description %></p></td>
 				    <td><p><%= h.hours %></p></td>

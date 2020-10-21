@@ -3,7 +3,8 @@
   <h1>Log your hours</h1>
   <%= simple_form_for @hourlog do |f| %>
     <%= f.input :name %>
-    <%= f.collection_select :project_id, @projects, :id, :name %>
+    <%= f.label :project_id, 'Project' %> <br/>
+    <%= f.collection_select :project_id, @projects, :id, :name %>  
     <%= f.input :description %>
     <%= f.input :hours %>
 	<br />
