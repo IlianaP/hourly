@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
 	before_action :authenticate_user!
 
 	def index 
-		@projects = Project.all
+		@projects = Project.all.order(status: :desc)
 		@hourlogs = Hourlog.all
 		
 	end
@@ -17,9 +17,31 @@ class ProjectsController < ApplicationController
 		redirect_to root_path
     end
 
+    def show
+    	@project = Project.find(params[:id])
+    	@hourlogs = Hourlog.all.order(date: :desc)
+
+    end
+
+    def edit 
+    	@project = Project.find(params[:id])
+    end
+
+    def update 
+    	@project = Project.find(params[:id])
+    	@project.update_attributes(project_params)
+    	redirect_to projects_path
+    end
+
+    def destroy
+    	@project = Project.find(params[:id])
+    	@project.destroy
+    	redirect_to projects_path
+   	end
+
     private
     def project_params
-    params.require(:project).permit(:name, :description, :plan, :planhours, :thours)
+    params.require(:project).permit(:name, :description, :plan, :planhours, :thours, :plandate, :duration, :starthourtrack, :status)
     end
 
 end

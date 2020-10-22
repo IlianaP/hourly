@@ -18,6 +18,9 @@
 		      <th scope="col">Description</th>
 		      <th scope="col">Plan</th>
 		      <th scope="col">Plan Hours</th>
+		      <th scope="col">Signed on</th>
+		      <th scope="col">Duration</th>
+		      <th scope="col">Count hours from</th>
 		      <th scope="col">Hours Worked</th>
 		      <th scope="col">Actions (test)</th>
 		    </tr>
@@ -26,12 +29,16 @@
 		  	<% @projects.each do |project| %>
 				  <div>
 				  	<td><p><%= project.id %></p></td>
-				    <td><p><%= project.name %></p></td>
+				    <td><p><%= link_to project.name, edit_project_path(project) %></p></td>
 				    <td><i><%= project.description %></i></td>
 				    <td><p><%= project.plan %></p></td>
 				    <td><p><%= project.planhours %></p></td>
-				    <td><p><%= @hourlogs.where(project_id: project.id).sum(:hours) %> </p></td>
-				    <td><p><%= project.id %></p></td>
+				    <td><p><%= project.plandate.strftime('%B %d, %Y') %></p></td>
+				    <td><p><%= project.duration %> months</p></td>
+				    <td><p><%= project.starthourtrack.strftime('%B %d, %Y') %></p></td>
+				    <td><p><%= link_to @hourlogs.where(project_id: project.id, date: project.starthourtrack..project.starthourtrack+1.month).sum(:hours), project_path(project) %> </p></td>
+
+				    <td><p><%= link_to 'Delete', project_path(project), method: :delete, data: {confirm: 'Are you sure you want to delete this?'},class: 'btn btn-danger' %></p></td>
 				  </tr></div>
 			<% end %>
 		  </tbody>

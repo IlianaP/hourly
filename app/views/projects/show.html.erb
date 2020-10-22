@@ -1,0 +1,34 @@
+<div class= "container"> 
+
+
+<div class = "row">
+	<h3 class = "p-3"><%= @project.name %>: Hourlog details </h3>
+</div>
+
+<div class = "row">
+	<div class="col"> 
+		<table class="table table-hover">
+		  <thead>
+		    <tr>
+		      <th scope="col">ID</th>
+		      <th scope="col">Name <i class="fa fa-plus-circle"></i></th>
+		      <th scope="col">Worked on</th>
+		      <th scope="col">Hours</th>
+		      <th scope="col">Date</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	<% @hourlogs.where(project_id: @project.id).each do |hourlog| %>
+				  <div>
+				  	<td><p><%= hourlog.id %></p></td>
+				    <td><p><%= hourlog.name %></p></td>
+				    <td><p><%= hourlog.description %></p></td>
+				    <td><p><%= hourlog.hours %></p></td>
+				    <td><p><%= hourlog.date.strftime('%B %d, %Y') %></p></td>
+				  </tr></div>
+			<% end %>
+		  </tbody>
+		</table>
+	</div>
+</div>
+</div>

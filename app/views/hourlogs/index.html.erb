@@ -14,9 +14,9 @@
 		  <thead>
 		    <tr>
 		      <th scope="col"> Date </th>
-		      <th scope="col">Name <i class="fa fa-plus-circle"></i></th>
-		      <th scope="col">Project <i class="fas fa-air-freshener"></i></th>
-		      <th scope="col">Description</th>
+		      <th scope="col">Name</th>
+		      <th scope="col">Project</th>
+		      <th scope="col">Worked on</th>
 		      <th scope="col">Hours</th>
 		      <th scope="col">Posted by</th>
 		      <th scope="col">Actions</th>
@@ -25,9 +25,9 @@
 		  <tbody class = "">
 		  	<% @hourlogs.each do |h| %>
 				  <div><tr>
-				  	<td><p> <%= h.date.strftime("%B %C, %Y") %> </p></td>
+				  	<td><p> <%= h.date.strftime('%B %d, %Y') %> </p></td>
 				    <td><p><%= h.name %> <%= h.id %></p></td>
-				    <td><p><%= h.project_id %></p></td>
+				    <td><p><%= @project.where(id: h.project_id).pluck(:name) %></p></td>
 				    <td><p><%= h.description %></p></td>
 				    <td><p><%= h.hours %></p></td>
 				    <td><p> <% if h.user.present? %> <small><%= h.user.email %></small> <%end%></p></td>
