@@ -3,7 +3,7 @@ class HourlogsController < ApplicationController
 before_action :authenticate_user!
 
   def index
-  	@hourlogs = Hourlog.all
+  	@hourlogs = Hourlog.all.order(date: :desc).paginate(:page => params[:page], :per_page => 10)
   	@title = "Hello"
   	@project = Project.all
   end

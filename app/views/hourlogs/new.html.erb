@@ -8,9 +8,7 @@
     <%= f.input :description %>
     <%= f.input :hours %>
 	<br />
-	<%= f.input :date, as: :date, start_year: Date.today.year - 1,
-                              end_year: Date.today.year + 1, discard_day: false,
-                              order: [:day, :month, :year] %>
+	<%= f.input :date, as: :date, html5: true %>
     <%= f.submit 'Create' %>
   <% end %>
 </div>

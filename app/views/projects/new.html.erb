@@ -4,23 +4,20 @@
   <%= simple_form_for @project do |f| %>
     <%= f.input :name %>
     <%= f.input :description %>
-    <%= f.input :plan, collection: ["Beta", "MVP", "Startup"]%>
-    <%= f.input :planhours %>
-    <%= f.input :thours %>
+    <%= f.input :plan, collection: ["Design", "MVP", "Beta", "Startup", "Full Time", "Enterprise", "Custom"]%>
+    <%= f.input :planhours, :label => "Dev hours allocated" %>
 	<div class="row"> 
 		<div class = "col-4">
-			<%= f.input :plandate, as: :date, start_year: Date.today.year - 1,
-		                              end_year: Date.today.year + 1, discard_day: false,
-		                              order: [:day, :month, :year] %>
+			<%= f.input :plandate, :label => "Contract signed on", as: :date, html5: true %>
 		</div>
 		<div class = "col-4">
 		    <%= f.input :duration %>
 		</div>
 	    <div class = "col-4">
-    		<%= f.input :starthourtrack, as: :date, html5: true %>
+    		<%= f.input :starthourtrack, :label => "Start new dev cycle on", as: :date, html5: true %>
         </div>                      
     </div>
-    <%= f.input :status, 
+    <%= f.input :status, :label => "Project Status",
           :collection => [[true, 'Active'], [false, 'Inactive']], 
           :label_method => :last, 
           :value_method => :first,

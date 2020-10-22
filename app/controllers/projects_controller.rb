@@ -13,13 +13,17 @@ class ProjectsController < ApplicationController
 	end
 
 	def create
-		Project.create(project_params)
-		redirect_to root_path
+		@project = Project.create(project_params)
+		if @project.valid? 
+			redirect_to root_path
+		else 
+			render :new, status: :unprocessable_entity
+		end
     end
 
     def show
     	@project = Project.find(params[:id])
-    	@hourlogs = Hourlog.all.order(date: :desc)
+    	@hourlogs = Hourlog.all.order(date: :desc).paginate(:page => params[:page], :per_page => 10)
 
     end
 

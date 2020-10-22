@@ -13,8 +13,8 @@
 		<table class="table table-hover">
 		  <thead>
 		    <tr>
-		      <th scope="col">ID</th>
-		      <th scope="col">Name <i class="fa fa-plus-circle"></i></th>
+		      <th scope="col"></th>
+		      <th scope="col">Name</th>
 		      <th scope="col">Description</th>
 		      <th scope="col">Plan</th>
 		      <th scope="col">Plan Hours</th>
@@ -28,7 +28,10 @@
 		  <tbody>
 		  	<% @projects.each do |project| %>
 				  <div>
-				  	<td><p><%= project.id %></p></td>
+				  	<td><p><% if project.status==true %> 🚀
+				  		<% else %> ✅
+				  		<% end %>
+				  	</p></td>
 				    <td><p><%= link_to project.name, edit_project_path(project) %></p></td>
 				    <td><i><%= project.description %></i></td>
 				    <td><p><%= project.plan %></p></td>

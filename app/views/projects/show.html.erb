@@ -9,6 +9,17 @@
 		<br/> <i> (<%= @project.starthourtrack.strftime('%B %d, %Y') %> - <%= (@project.starthourtrack+1.month-1.day).strftime('%B %d, %Y') %> ) </i>
 </div>
 
+<div class="row"> 
+	<div class="col-9"> 
+		<div class="page_info">
+	      <%= page_entries_info @hourlogs %>
+	    </div>
+	</div>
+	<div class="col-3"> 
+		<%= will_paginate @hourlogs, :container => false %>
+	</div>
+</div>
+
 <div class = "row">
 	<div class="col"> 
 		<table class="table table-hover">
@@ -35,4 +46,5 @@
 		</table>
 	</div>
 </div>
+<%= will_paginate @hourlogs, :page_links => false %>
 </div>
