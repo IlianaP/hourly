@@ -36,9 +36,9 @@
 				    <td><p><%= project.plandate.strftime('%B %d, %Y') %></p></td>
 				    <td><p><%= project.duration %> months</p></td>
 				    <td><p><%= project.starthourtrack.strftime('%B %d, %Y') %></p></td>
-				    <td><p><%= link_to @hourlogs.where(project_id: project.id, date: project.starthourtrack..project.starthourtrack+1.month).sum(:hours), project_path(project) %> </p></td>
+				    <td><p><%= link_to @hourlogs.where(project_id: project.id, date: project.starthourtrack..project.starthourtrack+1.month-1.day).sum(:hours), project_path(project) %> </p></td>
 
-				    <td><p><%= link_to 'Delete', project_path(project), method: :delete, data: {confirm: 'Are you sure you want to delete this?'},class: 'btn btn-danger' %></p></td>
+				    <td><p><%= link_to 'Delete', project_path(project), method: :delete, data: {confirm: 'Are you sure you want to delete this? You cannot recover the project, and all associated hourlogs will be deleted.'},class: 'btn btn-danger' %></p></td>
 				  </tr></div>
 			<% end %>
 		  </tbody>

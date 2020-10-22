@@ -2,7 +2,11 @@
 
 
 <div class = "row">
-	<h3 class = "p-3"><%= @project.name %>: Hourlog details </h3>
+	<h3 class = "p-3"><%= @project.name %>: Hourlog details </h3> </br>
+</div>
+<div class = "row p-3">
+	<p>Hours worked for current cycle: <b><%=@hourlogs.where(project_id: @project.id, date: @project.starthourtrack..@project.starthourtrack+1.month).sum(:hours) %></b> 
+		<br/> <i> (<%= @project.starthourtrack.strftime('%B %d, %Y') %> - <%= (@project.starthourtrack+1.month-1.day).strftime('%B %d, %Y') %> ) </i>
 </div>
 
 <div class = "row">
