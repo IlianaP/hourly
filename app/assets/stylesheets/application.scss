@@ -13,9 +13,10 @@
  *= require_tree .
  *= require_self
  */
-
+ @import "font-awesome";
+ @import "font-awesome-sprockets";
  @import "bootstrap";
  @import 'datetime_picker_input'; 
- @import "font-awesome";
+
 
  

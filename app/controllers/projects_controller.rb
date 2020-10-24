@@ -23,7 +23,7 @@ class ProjectsController < ApplicationController
 
     def show
     	@project = Project.find(params[:id])
-    	@hourlogs = Hourlog.all.order(date: :desc).paginate(:page => params[:page], :per_page => 10)
+        @hourlogs = Hourlog.where(project_id: @project.id).order(date: :desc).paginate(:page => params[:page], :per_page => 10)
 
     end
 
@@ -34,7 +34,11 @@ class ProjectsController < ApplicationController
     def update 
     	@project = Project.find(params[:id])
     	@project.update_attributes(project_params)
-    	redirect_to projects_path
+        if @project.valid? 
+            redirect_to root_path
+        else 
+            render :new, status: :unprocessable_entity
+        end
     end
 
     def destroy

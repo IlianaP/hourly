@@ -33,7 +33,7 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		  	<% @hourlogs.where(project_id: @project.id).each do |hourlog| %>
+		  	<% @hourlogs.each do |hourlog| %>
 				  <div>
 				  	<td><p><%= hourlog.id %></p></td>
 				    <td><p><%= hourlog.name %></p></td>

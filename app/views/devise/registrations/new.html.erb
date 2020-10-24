@@ -1,15 +1,31 @@
-<div class="container">
-  <div class="booyah-box col-6">
+<div class="sign-in-container">
+
+<div class="left-col">
+  <h2 class = "quote"> And an even better day to join our team. </h2>
+</div>
+<div class="right-col">
+  <div class = "sign-in-form-container">
       <h2>Sign up</h2>
 
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
 
         <div class="form-inputs">
+          <%= f.input :fname,
+                      required: true,
+                      autofocus: true,
+                      input_html:  {autocomplete: "First Name"}%>
+          <%= f.input :lname,
+                      required: true,
+                      autofocus: true,
+                      input_html:  {autocomplete: "Last Name"}%>
           <%= f.input :email,
                       required: true,
                       autofocus: true,
                       input_html: { autocomplete: "email" }%>
+          <%= f.input :role,
+                      required: true,
+                      autofocus: true%>         
           <%= f.input :password,
                       required: true,
                       hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),

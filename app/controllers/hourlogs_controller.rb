@@ -2,11 +2,21 @@ class HourlogsController < ApplicationController
 
 before_action :authenticate_user!
 
+
   def index
-  	@hourlogs = Hourlog.all.order(date: :desc).paginate(:page => params[:page], :per_page => 10)
+  	@hourlogs = Hourlog.all.order(date: :desc).paginate(:page => params[:page], :per_page => 7)
   	@title = "Hello"
   	@project = Project.all
-  end
+    @filter = Filter.first
+
+    respond_to do |format|
+       format.html
+       format.pdf do
+          render :pdf => “file.pdf”, :template => ‘hourlogs/index.html.erb’
+       end
+    end
+
+  end 
 
   def new 
   	@hourlog = Hourlog.new
@@ -14,8 +24,14 @@ before_action :authenticate_user!
   end
 
 	def create
-	  current_user.hourlogs.create(hourlog_params)
-	  redirect_to hourlogs_path
+    @projects = Project.all
+
+	  @hourlog = current_user.hourlogs.create(hourlog_params)
+    if @hourlog.valid? 
+      redirect_to hourlogs_path
+    else 
+      render :new, status: :unprocessable_entity
+    end 
 	end
 
   def show

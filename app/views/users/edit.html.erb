@@ -1,0 +1,13 @@
+<div class="booyah-box col-10 offset-1">
+  <h1>Edit Profile Details for </h1>
+  <%= simple_form_for @user do |f| %>
+    <%= f.input :fname %>
+    <%= f.input :lname %>
+    <%= f.input :role %>
+    <%= f.input :email %>
+    <%= f.input :is_admin %>
+    <%= f.input :is_approved %>
+    <br />
+    <%= f.submit 'Update', class: 'btn btn-primary' %>
+  <% end %>
+</div>

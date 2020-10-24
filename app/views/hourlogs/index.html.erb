@@ -1,11 +1,15 @@
 <div class= "container"> 
 
 <div class = "row">
-	<h2 class= "p-3 col-10">Hour Log </h2>
-	<div class="p-3 col-2"> 
-		<%= link_to "Log Hours", new_hourlog_path , class: 'btn btn-primary' %>
+	<h2 class= "p-3 col-10"> Hour Log </h2> 
+	<!-- <div class =""> -->
+	<%# link_to "Log Hours", new_hourlog_path , class: 'btn btn-primary' %>
+	<!-- </div>-->
+	<div class="p-3 col-2 my-auto"> 
+		<%= link_to "Filter", edit_filter_path(id: 1) , class: 'btn btn-primary' %>
 	</div>
 </div>
+
 <div class="row"> 
 	<div class="col-9"> 
 		<div class="page_info">

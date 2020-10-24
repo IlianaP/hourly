@@ -22,14 +22,15 @@
 		      <th scope="col">Duration</th>
 		      <th scope="col">Count hours from</th>
 		      <th scope="col">Hours Worked</th>
-		      <th scope="col">Actions (test)</th>
+		      <th scope="col">Actions</th>
 		    </tr>
 		  </thead>
 		  <tbody>
 		  	<% @projects.each do |project| %>
 				  <div>
 				  	<td><p><% if project.status==true %> 🚀
-				  		<% else %> ✅
+				  		<% else %> <%= icon('fas', 'flag') %>
+						
 				  		<% end %>
 				  	</p></td>
 				    <td><p><%= link_to project.name, edit_project_path(project) %></p></td>

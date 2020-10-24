@@ -9,12 +9,12 @@
   </head>
 
   <body>
-
-  	<nav class="navbar navbar-toggleable-md navbar-inverse ">
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+<% if user_signed_in? %>
+  	<nav class="navbar navbar-expand-lg navbar-dark navbar-inverse p-3">
+      <a class="navbar-brand" href="#">HYPERSPACE<span class = "font-weight-lighter">LOG</span></a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation"> 
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="#">Hourly</a>
 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-md-0">
@@ -24,16 +24,19 @@
           <li class ="nav-item">
               <%= link_to 'Hour Log', hourlogs_path, class: 'nav-link' %> 
           </li>
-          <!-- <li class ="nav-item">
-              <%= link_to 'Team', '#', class: 'nav-link' %> 
-            </li> --> 
-        </ul>
+          <li class ="nav-item">
+              <%= link_to 'Team', users_index_path, class: 'nav-link' %> 
+            </li>
+        
         <!--<form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form> -->
-
+        </ul>
         <ul class = "navbar-nav"> 
+          <li class ="nav-item">
+              <%= link_to 'Log hours', new_hourlog_path, class: "btn btn-info" %> 
+          </li>
         	<% if user_signed_in? %> 
         		<li class="nav-item"> 
         			<%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
@@ -45,11 +48,11 @@
         		<li class="nav-item">
 			      <%= link_to 'Sign up', new_user_registration_path, class: 'nav-link' %>
 			    </li>
-        	<%end%> 
-        </ul>
-
+        	<%end%>
+        </ul> 
       </div>
     </nav>
+  <% end %> 
     <% if notice.present? %> 
     	<p class="alert alert-info"><%= notice %></p>
     <%end %> 

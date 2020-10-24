@@ -48,8 +48,8 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'popper_js', '~> 1.11.1'
-gem 'bootstrap', '4.0.0.alpha6'
+gem 'popper_js', '~> 1.14.5'
+gem 'bootstrap', '5.0.0.alpha1'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
@@ -57,6 +57,10 @@ end
 
 gem 'simple_form'
 gem "font-awesome-rails"
+gem 'font-awesome-sass', '~> 5.15.1'
 gem 'devise'
 gem 'datetime_picker_input' 
 gem 'will_paginate'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+gem 'sprockets-rails', :require => 'sprockets/railtie'

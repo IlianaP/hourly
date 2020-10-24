@@ -1,4 +1,5 @@
 class Hourlog < ApplicationRecord
+
 	belongs_to :user
 	belongs_to :project
 	accepts_nested_attributes_for :project
@@ -7,4 +8,5 @@ class Hourlog < ApplicationRecord
 	validates :hours, presence: true
 	validates :date, presence: true
 	validates :project, presence: true
+
 end

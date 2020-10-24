@@ -1,5 +1,6 @@
 @import "bootstrap";
 @import "font-awesome";
+@import "font-awesome-sprockets";
 
 .booyah-box {
   -moz-box-shadow: 1px 1px 2px 0 #d0d0d0;
@@ -16,7 +17,7 @@
 .navbar {
   /* background: image_url('cartographer.png'); */
   box-shadow: 0px 1px 3px #2a2a2a;
-  background-color: #280E4D;
+  background-color: #6032C7;
 }
 
 body {
@@ -30,3 +31,113 @@ body {
   border-radius: 3px;
   padding: 2px 8px 2px 8px;
 }
+
+.align-bottom {
+  bottom: 0;
+}
+
+.sessionbg{
+  color: black;
+}
+
+.sign-in-container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center; }
+  @media only screen and (min-width: 601px) and (max-width: 1023px) {
+    .sign-in-container {
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse; } }
+  @media only screen and (max-width: 600px) {
+    .sign-in-container {
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse; } }
+  .sign-in-container > .left-col,
+  .sign-in-container > .right-col {
+    -ms-flex: 1 0 50%;
+        flex: 1 0 50%;
+    min-height: 600px;
+    height: 100vh;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+        justify-content: center;
+    -ms-flex-align: center;
+        align-items: center; }
+    @media only screen and (min-width: 601px) and (max-width: 1023px) {
+      .sign-in-container > .left-col,
+      .sign-in-container > .right-col {
+        width: 100%;
+        min-height: 50vh; } }
+    @media only screen and (max-width: 600px) {
+      .sign-in-container > .left-col,
+      .sign-in-container > .right-col {
+        width: 100%;
+        min-height: 50vh; } }
+  .sign-in-container > .left-col {
+    background: #6032C7;
+    background-size: cover;
+    text-align: center; }
+    .sign-in-container > .left-col > .quote {
+      color: #FFFFFF;
+      font-size: 36px;
+      line-height: 48px;
+      font-weight: bold;
+      max-width: 430px;
+      text-align: left; }
+  .sign-in-container > .right-col {
+    background: #E5E5E5; }
+    .sign-in-container > .right-col .sign-in-form-container {
+      width: 350px; }
+      .sign-in-container > .right-col .sign-in-form-container > .heading {
+        font-weight: bold;
+        font-size: 36px;
+        color: #333333;
+        line-height: 42px;
+        text-align: center;
+        margin-bottom: 15px; }
+      .sign-in-container > .right-col .sign-in-form-container > .sign-in-form > .__error {
+        text-align: center; }
+      .sign-in-container > .right-col .sign-in-form-container > .sign-in-form > .form_input,
+      .sign-in-container > .right-col .sign-in-form-container > .sign-in-form > .form_input_error {
+        height: 50px;
+        width: 100%;
+        border: 1px solid #979797;
+        margin: 10px 0;
+        padding-left: 10px;
+        border-radius: 5px;
+        color: #979797;
+        font-size: 14px;
+        font-family: "Avenir Next", "Helvetica Neue", Helvetica, sans-serif; }
+      .sign-in-container > .right-col .sign-in-form-container > .sign-in-form > .form_input_error {
+        border: 2px solid #F20F35; }
+      .sign-in-container > .right-col .sign-in-form-container > .sign-in-form > input[type='submit'] {
+        background: #6032C7;
+        color: #FFFFFF;
+        width: 100%;
+        height: 50px;
+        border-radius: 50px;
+        font-weight: bold;
+        margin-top: 20px;
+        font-size: 16px;
+        font-family: "Avenir Next", "Helvetica Neue", Helvetica, sans-serif; }
+      .sign-in-container > .right-col .sign-in-form-container > .password-reset {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 15px; }
+        .sign-in-container > .right-col .sign-in-form-container > .password-reset > a {
+          color: #979797; }
+
+.sign_in_btn{
+    background: #0e30d6;
+    color: #fff;
+    width: 100%;
+    height: 50px;
+    border-radius: 50px;
+    font-weight: 700;
+    margin-top: 20px;
+    font-size: 16px;
+    font-family: Avenir Next,Helvetica Neue,Helvetica,sans-serif;}
