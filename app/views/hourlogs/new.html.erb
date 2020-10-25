@@ -5,8 +5,7 @@
     <%= f.input :name %>
     <div class="row">
         <div class ="col-6">
-          <%= f.label :project_id, 'Project' %> <br/>
-          <%= f.collection_select :project_id, @projects, :id, :name %>
+          <%= f.input :project_id, :collection => @projects, label_method: :name, value_method: :id, label: "Choose Project", include_blank: true %>
         </div>
         <div class ="col-6">
           <%= f.input :description, label: "I worked on" %>

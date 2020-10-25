@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'users/index'
 
   devise_for :users
-  root 'hourlogs#new'
+  root 'users#current_user_home'
   resources :projects
   resources :hourlogs
   resources :filters

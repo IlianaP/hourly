@@ -41,6 +41,8 @@ body {
 }
 
 .sign-in-container {
+  position: relative;
+  display: inline-block;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
@@ -141,3 +143,10 @@ body {
     margin-top: 20px;
     font-size: 16px;
     font-family: Avenir Next,Helvetica Neue,Helvetica,sans-serif;}
+
+.alert {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+}

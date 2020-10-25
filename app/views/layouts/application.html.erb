@@ -22,7 +22,7 @@
               <%= link_to 'Projects', projects_path, class: 'nav-link' %> 
           </li>
           <li class ="nav-item">
-              <%= link_to 'Hour Log', hourlogs_path, class: 'nav-link' %> 
+              <%= link_to 'Hour Log', edit_filter_path(id: 1), class: 'nav-link' %> 
           </li>
           <li class ="nav-item">
               <%= link_to 'Team', users_index_path, class: 'nav-link' %> 
@@ -56,6 +56,7 @@
       </div>
     </nav>
   <% end %> 
+
     <% if notice.present? %> 
     	<p class="alert alert-info"><%= notice %></p>
     <%end %> 

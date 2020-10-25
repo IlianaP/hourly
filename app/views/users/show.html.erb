@@ -1,14 +1,17 @@
 <div class = "container">
 	<div class="booyah-box">
-		<div class = "row p-3">
+		<div class = "row p-3 ">
 			<div class = "col-2">  
-				photo
+				<%= image_tag 'user.png', class: "img-responsive img-thumbnail img-circle" %>
 			</div>
-			<div class = "col-10">
+			<div class = "col-8">
 				<h1><%= @user.fname %> <%= @user.lname %>, <span class ="font-weight-light"><%= @user.role %></span></h1>
 				<h3 class = "text-bold font-weight-light"><%= @user.email %></h3>
 				<h4 class = "text-primary font-weight-light">Member Since: <%= @user.created_at.strftime("%B %d, %Y") %></h4>
 				<h4><%= @user.hourlogs.sum(:hours) %> <span class ="font-weight-light">total hours worked 🎉</span></h4>
+			</div>
+			<div class = "col-2 my-auto">
+				<%= link_to 'Log hours', new_hourlog_path, class: "btn btn-warning btn-large" %> 
 			</div>
 		</div>
 	</div>

@@ -16,6 +16,7 @@ class FiltersController < ApplicationController
 	end
 
 	def edit
+		@user = User.all
 		@filter = Filter.first
 		@project = Project.all
 	    if ((@filter.date_to != nil) && (@filter.date_from != nil))
@@ -39,6 +40,6 @@ class FiltersController < ApplicationController
 
 	private
 	def filter_params
-	  params.require(:filter).permit(:project, :date_to, :date_from)
+	  params.require(:filter).permit(:email, :project, :date_to, :date_from)
 	end
 end

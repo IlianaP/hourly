@@ -25,10 +25,10 @@ before_action :authenticate_user!
 
 	def create
     @projects = Project.all
-
+    @user = User.find(current_user)
 	  @hourlog = current_user.hourlogs.create(hourlog_params)
     if @hourlog.valid? 
-      redirect_to hourlogs_path
+      redirect_to current_user
     else 
       render :new, status: :unprocessable_entity
     end 
@@ -51,9 +51,14 @@ before_action :authenticate_user!
   end
 
   def destroy
+    @user = User.find(current_user)
   	@hourlog = Hourlog.find(params[:id])
   	@hourlog.destroy
-  	redirect_to hourlogs_path
+    if @user.is_admin
+  	   redirect_to edit_filter_path(id: 1)
+    else
+       redirect_to current_user
+    end
   end
 
 	private

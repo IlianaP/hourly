@@ -29,8 +29,8 @@
 		  	<% @projects.each do |project| %>
 				  <div>
 				  	<td><p><% if project.status==true %> 🚀
-				  		<% else %> <%= icon('fas', 'flag') %>
-						
+				  		<% else %>
+						🏁
 				  		<% end %>
 				  	</p></td>
 				    <td><p><%= link_to project.name, edit_project_path(project) %></p></td>
