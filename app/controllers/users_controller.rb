@@ -7,6 +7,11 @@ class UsersController < ApplicationController
   	@users = User.all
   end
 
+  def show 
+  	@user = User.find(params[:id])
+  	@hourlogs = Hourlog.where(user_id: @user.id).order(date: :desc).paginate(:page => params[:page], :per_page => 10)
+  end
+
   def edit
   	@user = User.find(params[:id])
   end

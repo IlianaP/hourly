@@ -38,6 +38,9 @@
               <%= link_to 'Log hours', new_hourlog_path, class: "btn btn-info" %> 
           </li>
         	<% if user_signed_in? %> 
+            <li class="nav-item">
+              <%= link_to 'My Profile', user_path(current_user), class: 'nav-link' %>
+            </li>
         		<li class="nav-item"> 
         			<%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
         		</li>
