@@ -25,6 +25,16 @@
  <% end %>
 </div>
 </div>
+<div class="row"> 
+	<div class="col-9"> 
+		<div class="page_info">
+	      <%= page_entries_info @hourlogs %>
+	    </div>
+	</div>
+	<div class="col-3"> 
+		<%= will_paginate @hourlogs, :container => false %>
+	</div>
+</div>
  <div class = "row">
 	<div class="col"> 
 		<table class="table table-hover">
@@ -40,35 +50,9 @@
 		    </tr>
 		  </thead>
 		  <tbody class = "">
-		  <% if @filter.date_from != nil && @filter.date_to != nil %> 
-		  	<% @hourlogs.each_slice(10) do |slice| %>
-		  	<% slice.each do |h| %>
+		  	<% @hourlogs.each do |h| %>
 				  <div class = ""><tr>
-				  	<% if  (h.project_id.equal? @filter.project) && (h.date >= @filter.date_from) && (h.date <= @filter.date_to) %> 
-						  	<td><p> <%= h.date.strftime('%B %d, %Y') %> </p></td>
-						    <td><p><%= h.name %></p></td>
-						    <td><p><%= h.project.name %></p></td>
-						    <td><p><%= h.description %></p></td>
-						    <td><p><%= h.hours %></p></td>
-						    <td><p> <% if h.user.present? %> <small><%= h.user.email %></small> <%end%></p></td>
-						    <td><p><%= link_to 'Edit', edit_hourlog_path(h), class: 'btn btn-info'%> <%= link_to 'Delete', hourlog_path(h), method: :delete, data: {confirm: 'Are you sure you want to delete this?'},class: 'btn btn-danger' %></td>
-					<% elsif (@filter.project==nil) && (h.date >= @filter.date_from) && (h.date <= @filter.date_to) %>
-						<td><p> <%= h.date.strftime('%B %d, %Y') %> </p></td>
-						    <td><p><%= h.name %></p></td>
-						    <td><p><%= h.project.name %></p></td>
-						    <td><p><%= h.description %></p></td>
-						    <td><p><%= h.hours %></p></td>
-						    <td><p> <% if h.user.present? %> <small><%= h.user.email %></small> <%end%></p></td>
-						    <td><p><%= link_to 'Edit', edit_hourlog_path(h), class: 'btn btn-info'%> <%= link_to 'Delete', hourlog_path(h), method: :delete, data: {confirm: 'Are you sure you want to delete this?'},class: 'btn btn-danger' %></td>
-					<% end %>
-				  </tr></div>
-			<% end %>
-			<% end %>
 
-		  <% elsif (@filter.project==nil)%>
-		  		<% @hourlogs.each_slice(10) do |slice| %>
-		  		<% slice.each do |h| %>
-				  <div class = ""><tr>
 						  	<td><p> <%= h.date.strftime('%B %d, %Y') %> </p></td>
 						    <td><p><%= h.name %></p></td>
 						    <td><p><%= h.project.name %></p></td>
@@ -76,23 +60,8 @@
 						    <td><p><%= h.hours %></p></td>
 						    <td><p> <% if h.user.present? %> <small><%= h.user.email %></small> <%end%></p></td>
 						    <td><p><%= link_to 'Edit', edit_hourlog_path(h), class: 'btn btn-info'%> <%= link_to 'Delete', hourlog_path(h), method: :delete, data: {confirm: 'Are you sure you want to delete this?'},class: 'btn btn-danger' %></td>
-					<% end %>
-			 	<% end %>
-			<% else %>
-				<% @hourlogs.each_slice(10) do |slice| %>
-		  		<% slice.each do |h| %>
-				  <div class = ""><tr>
-				  	<% if (h.project_id.equal? @filter.project) %> 
-						  	<td><p> <%= h.date.strftime('%B %d, %Y') %> </p></td>
-						    <td><p><%= h.name %></p></td>
-						    <td><p><%= h.project.name %></p></td>
-						    <td><p><%= h.description %></p></td>
-						    <td><p><%= h.hours %></p></td>
-						    <td><p> <% if h.user.present? %> <small><%= h.user.email %></small> <%end%></p></td>
-						    <td><p><%= link_to 'Edit', edit_hourlog_path(h), class: 'btn btn-info'%> <%= link_to 'Delete', hourlog_path(h), method: :delete, data: {confirm: 'Are you sure you want to delete this?'},class: 'btn btn-danger' %></td>
-					<% end %>
-				<% end %> 
-				<% end %>
+				  </tr></div>
+				
 		  <% end %> 
 		  </tbody>
 		</table>

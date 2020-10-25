@@ -1,7 +1,5 @@
 class FiltersController < ApplicationController
 
-before_action :authenticate_user!
-
 	def index
 	end 
 
@@ -20,7 +18,17 @@ before_action :authenticate_user!
 	def edit
 		@filter = Filter.first
 		@project = Project.all
-		@hourlogs = Hourlog.all.order(date: :desc)
+	    if ((@filter.date_to != nil) && (@filter.date_from != nil))
+			if (@filter.project != nil)
+				@hourlogs = Hourlog.where(project_id: @filter.project, date: @filter.date_from..@filter.date_to).order(date: :desc).paginate(:page => params[:page], :per_page => 7)
+			elsif (@filter.project == nil)
+				@hourlogs = Hourlog.where(date: @filter.date_from..@filter.date_to).order(date: :desc).paginate(:page => params[:page], :per_page => 7)
+			end
+		elsif (@filter.project != nil)
+			@hourlogs = Hourlog.where(project_id: @filter.project).order(date: :desc).paginate(:page => params[:page], :per_page => 7)
+		else 
+			@hourlogs = Hourlog.all.order(date: :desc).paginate(:page => params[:page], :per_page => 7)
+		end
 	end
 
 	def update
