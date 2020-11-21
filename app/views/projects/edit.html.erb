@@ -2,27 +2,42 @@
   <div class = "container">
       <h1>Edit details</h1>
       <%= simple_form_for @project do |f| %>
-        <%= f.input :name %>
-        <%= f.input :description %>
+        <div class = "row p-3">
+          <div class = "col-6">
+            <%= f.input :name %>
+          </div>
+          <div class = "col-6">
+             <%= f.input :description %>
+          </div>
+        </div>
+        <div class = "row p-3">
+          <div class = "col-6">
         <%= f.input :plan, collection: ["Design", "MVP", "Beta", "Startup", "Full Time", "Enterprise", "Custom"]%>
+      </div>
+      <div class = "col-6">
         <%= f.input :planhours %>
-    	<div class="row"> 
-    		<div class = "col-4">
+      </div>
+        </div>
+    	<div class="row p-3"> 
+    		<div class = "col-3">
     			<%= f.input :plandate, as: :date, html5: true %>
     		</div>
-    		<div class = "col-4">
+    		<div class = "col-3">
     		    <%= f.input :duration %>
     		</div>
-    	    <div class = "col-4">
+    	    <div class = "col-3">
         		<%= f.input :starthourtrack, :label => "Start new dev cycle on", as: :date, html5: true %>
             </div>                      
-        </div>
+        
+        <div class = "col-3">
             <%= f.input :status, :label => "Project Status",
               :collection => [[true, 'Active'], [false, 'Inactive']], 
               :label_method => :last, 
               :value_method => :first,
               :as => :radio_buttons, 
-              :checked => true %>
+              :checked => true%>
+        </div>
+        </div>
 
 
     </br> 

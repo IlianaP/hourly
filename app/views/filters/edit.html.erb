@@ -4,7 +4,7 @@
 <%= simple_form_for @filter do |f| %>
     <div class = "row"> 
     	<div class = "col-3 align-bottom">
-    		<%= f.input :email, :collection => @user, label_method: :concatenated_name, value_method: :email, label: "Posted by", include_blank: true %>
+    		<%= f.input :user_id, :collection => @user, label_method: :concatenated_name, value_method: :id, label: "Name", include_blank: true %>
     	</div>
     	<div class = "col-3 align-bottom">
     		<%= f.input :project, :collection => @project, label_method: :name, value_method: :id, label: "Choose Project", include_blank: true %>
@@ -24,9 +24,11 @@
 		    		<%=f.hidden_field :project, :value => nil %>
 		    		<%=f.hidden_field :date_from, :value => nil %>
 		    		<%=f.hidden_field :date_to, :value => nil %>
-		    		<%= f.submit 'Clear filter', class: 'text-danger' %>		
+		    		<%=f.hidden_field :user_id, :value => nil %>
+		    		<%= f.submit 'Clear filter', class: 'btn btn-clear' %>		
 		 <% end %>
 		</div>
+		<%= link_to "Download CSV", hourlogs_path(format: "csv") %>
 </div>
 <div class="row"> 
 	<div class="col-9"> 
@@ -48,7 +50,7 @@
 		      <th scope="col">Project</th>
 		      <th scope="col">Worked on</th>
 		      <th scope="col">Hours</th>
-		      <th scope="col">Posted by</th>
+		      <th scope="col">Email</th>
 		      <th scope="col">Actions</th>
 		    </tr>
 		  </thead>
@@ -57,14 +59,13 @@
 				  <div class = ""><tr>
 
 						  	<td><p> <%= h.date.strftime('%B %d, %Y') %> </p></td>
-						    <td><p><% if h.user.present? %><%= h.user.fname %> <%= h.user.lname %> <%end%></p></td>
+						    <td><p><% if h.user.present? && h.user.admin? %><%= h.user.fname %> <%= h.user.lname %> <%else%> <%= h.name %> <%end%></p></td>
 						    <td><p><%= h.project.name %></p></td>
 						    <td><p><%= h.description %></p></td>
 						    <td><p><%= h.hours %></p></td>
 						    <td><p> <% if h.user.present? %> <small><%= h.user.email %></small> <%end%></p></td>
 						    <td><p><%= link_to 'Edit', edit_hourlog_path(h), class: 'btn btn-info'%> <%= link_to 'Delete', hourlog_path(h), method: :delete, data: {confirm: 'Are you sure you want to delete this?'},class: 'btn btn-danger' %></td>
 				  </tr></div>
-				
 		  <% end %> 
 		  </tbody>
 		</table>
@@ -73,3 +74,4 @@
 </div>
 
 </div>
+

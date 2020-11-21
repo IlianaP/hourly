@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   root 'users#current_user_home'
+  get 'status', to: 'static_pages#status'
   resources :projects
   resources :hourlogs
   resources :filters

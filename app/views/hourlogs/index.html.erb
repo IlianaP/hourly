@@ -1,25 +1,48 @@
-<div class= "container"> 
+<div class = "p-3 container">
 
-<div class = "row">
-	<h2 class= "p-3 col-10"> Hour Log </h2> 
-	<!-- <div class =""> -->
-	<%# link_to "Log Hours", new_hourlog_path , class: 'btn btn-primary' %>
-	<!-- </div>-->
-	<div class="p-3 col-2 my-auto"> 
-		<%= link_to "Filter", edit_filter_path(id: 1) , class: 'btn btn-primary' %>
-	</div>
+<h2> Search Hour Logs </h2>
+<%= simple_form_for @filter do |f| %>
+    <div class = "row"> 
+    	<div class = "col-3 align-bottom">
+    		<%= f.input :user_id, :collection => @user, label_method: :concatenated_name, value_method: :id, label: "Name", include_blank: true %>
+    	</div>
+    	<div class = "col-3 align-bottom">
+    		<%= f.input :project, :collection => @project, label_method: :name, value_method: :id, label: "Choose Project", include_blank: true %>
+    	</div>
+    	<div class = "col-2 align-bottom">
+    		<%= f.input :date_from, as: :date, html5: true %>
+    	</div>
+    	<div class = "col-2 align-bottom">
+    		<%= f.input :date_to, as: :date, html5: true %>  
+    	</div>
+    	<div class = "col-1 mx-auto my-4">
+    		<%= f.submit 'Filter', class: 'btn btn-primary align-bottom' %>
+    	</div>
+  <% end %>
+		<div class = "col-1 align-bottom my-4">
+		 <%= simple_form_for @filter do |f| %>
+		    		<%=f.hidden_field :project, :value => nil %>
+		    		<%=f.hidden_field :date_from, :value => nil %>
+		    		<%=f.hidden_field :date_to, :value => nil %>
+		    		<%=f.hidden_field :user_id, :value => nil %>
+		    		<%= f.submit 'Clear filter', class: 'btn btn-clear' %>		
+		 <% end %>
+		</div>
+		<p> Total hours: <%= @total_hourlogs %> </p>
+		<%= link_to "Download CSV", hourlogs_path(format: "csv") %>
 </div>
 
 <div class="row"> 
 	<div class="col-9"> 
 		<div class="page_info">
-	      <%= page_entries_info @hourlogs %>
+	      <%= page_entries_info @hourlogs_paginated %>
 	    </div>
 	</div>
 	<div class="col-3"> 
-		<%= will_paginate @hourlogs, :container => false %>
+		<%= will_paginate @hourlogs_paginated, :container => false %>
 	</div>
 </div>
+
 <div class = "row">
 	<div class="col"> 
 		<table class="table table-hover">
@@ -35,11 +58,11 @@
 		    </tr>
 		  </thead>
 		  <tbody class = "">
-		  	<% @hourlogs.each do |h| %>
+		  	<% @hourlogs_paginated.each do |h| %>
 				  <div><tr>
 				  	<td><p> <%= h.date.strftime('%B %d, %Y') %> </p></td>
 				    <td><p><%= h.name %></p></td>
-				    <td><p><%= @project.where(id: h.project_id).pluck(:name) %></p></td>
+				    <td><p><%= h.project.name %></p></td>
 				    <td><p><%= h.description %></p></td>
 				    <td><p><%= h.hours %></p></td>
 				    <td><p> <% if h.user.present? %> <small><%= h.user.email %></small> <%end%></p></td>

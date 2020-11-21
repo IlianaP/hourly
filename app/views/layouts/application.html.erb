@@ -9,53 +9,48 @@
   </head>
 
   <body>
-<% if user_signed_in? %>
   	<nav class="navbar navbar-expand-lg navbar-dark navbar-inverse p-3">
-      <a class="navbar-brand" href="#">HYPERSPACE<span class = "font-weight-lighter">LOG</span></a>
+      <div class="navbar-brand" href="#">HYPERSPACE<span class = "font-weight-lighter">LOG</span></div>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation"> 
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+        <% if user_signed_in? && current_user.is_approved && current_user.is_admin %>
         <ul class="navbar-nav mr-auto mt-2 mt-md-0">
-          <li class ="nav-item">
-              <%= link_to 'Projects', projects_path, class: 'nav-link' %> 
-          </li>
-          <li class ="nav-item">
-              <%= link_to 'Hour Log', edit_filter_path(id: 1), class: 'nav-link' %> 
-          </li>
-          <li class ="nav-item">
-              <%= link_to 'Team', users_index_path, class: 'nav-link' %> 
-            </li>
-        
-        <!--<form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form> -->
+              <li class ="nav-item">
+                  <%= link_to 'Projects', projects_path, class: 'nav-link' %> 
+              </li>
+              <li class ="nav-item">
+                  <%= link_to 'Hour Log', hourlogs_path, class: 'nav-link' %> 
+              </li>
+              <li class ="nav-item">
+                  <%= link_to 'Team', users_index_path, class: 'nav-link' %> 
+                </li>
         </ul>
-        <ul class = "navbar-nav"> 
+        <% end %> 
+        <ul class = "navbar-nav ml-auto mt-2 mt-md-0"> 
+
+          <% if user_signed_in? && current_user.is_approved %>
           <li class ="nav-item">
               <%= link_to 'Log hours', new_hourlog_path, class: "btn btn-info" %> 
           </li>
-        	<% if user_signed_in? %> 
             <li class="nav-item">
               <%= link_to 'My Profile', user_path(current_user), class: 'nav-link' %>
             </li>
         		<li class="nav-item"> 
         			<%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
         		</li>
-        	<% else %> 
-        		<li class ="nav-item">
-        			<%= link_to 'Sign In', new_user_session_path, class: 'nav-link' %> 
-        		</li>
-        		<li class="nav-item">
-			      <%= link_to 'Sign up', new_user_registration_path, class: 'nav-link' %>
-			    </li>
+            
+        	<% elsif user_signed_in? %> 
+            <li class="nav-item"> 
+              <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+            </li>
         	<%end%>
         </ul> 
       </div>
     </nav>
-  <% end %> 
 
     <% if notice.present? %> 
     	<p class="alert alert-info"><%= notice %></p>

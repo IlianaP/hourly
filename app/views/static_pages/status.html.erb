@@ -1,0 +1,20 @@
+<br />
+<% if current_user.deactivated? %> 
+
+	<div class="booyah-box col-10 offset-1">
+	  <h1> Your account has been deactivated.</h1>
+
+	  <p>
+	    If this was an error, please contact the admin. 
+	  </p>
+	</div>
+<% else %>
+	<div class="booyah-box col-10 offset-1">
+	  <h1>🚀 We are excited to have you! 🚀</h1>
+
+	  <p>
+	    Thanks for signing up! Your account was succesfully created, but is pending approval. 
+	    Check back again in a bit.
+	  </p>
+	</div>
+<% end %> 

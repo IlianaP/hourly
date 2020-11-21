@@ -1,5 +1,9 @@
 class FiltersController < ApplicationController
-
+	before_action :authenticate_user!
+	before_action :is_approved?
+	before_action :is_admin?
+	before_action :is_deactivated!
+	
 	def index
 	end 
 
@@ -16,30 +20,29 @@ class FiltersController < ApplicationController
 	end
 
 	def edit
-		@user = User.all
-		@filter = Filter.first
-		@project = Project.all
-	    if ((@filter.date_to != nil) && (@filter.date_from != nil))
-			if (@filter.project != nil)
-				@hourlogs = Hourlog.where(project_id: @filter.project, date: @filter.date_from..@filter.date_to).order(date: :desc).paginate(:page => params[:page], :per_page => 7)
-			elsif (@filter.project == nil)
-				@hourlogs = Hourlog.where(date: @filter.date_from..@filter.date_to).order(date: :desc).paginate(:page => params[:page], :per_page => 7)
-			end
-		elsif (@filter.project != nil)
-			@hourlogs = Hourlog.where(project_id: @filter.project).order(date: :desc).paginate(:page => params[:page], :per_page => 7)
-		else 
-			@hourlogs = Hourlog.all.order(date: :desc).paginate(:page => params[:page], :per_page => 7)
-		end
 	end
 
 	def update
 		@filter = Filter.first
 		@filter.update_attributes(filter_params)
-		redirect_to edit_filter_path(id: 1)
+		redirect_to hourlogs_path
 	end
 
 	private
 	def filter_params
-	  params.require(:filter).permit(:email, :project, :date_to, :date_from)
+	  params.require(:filter).permit(:user_id, :project, :date_to, :date_from)
 	end
+
+    def is_admin? 
+        redirect_to current_user && flash.alert = "You need to be an admin to access this functionality." unless current_user.is_admin?
+    end 
+
+  	def is_approved? 
+    	redirect_to status_path unless current_user.is_approved?
+  	end 
+  	def is_deactivated! 
+    if current_user.deactivated? 
+    	redirect_to status_path 
+    end
+    end 
 end

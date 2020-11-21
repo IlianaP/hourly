@@ -26,7 +26,7 @@
 				    <td><p><%= user.role %></p></td>
 				    <td><p><% if user.is_approved %> Approved <% else %> Pending <% end %> </p></td>
 				    <td><p><% if user.is_admin %> Admin <% else %> User <% end %></p></td>
-				    <td><p><%= link_to 'Edit', edit_user_path(user) , class: 'btn btn-primary' %> <%= link_to 'Delete', "#" , method: :delete, data: {confirm: 'Are you sure you want to delete this? You cannot recover the project, and all associated hourlogs will be deleted.'},class: 'btn btn-danger' %></p></td>
+				    <td><p><%= link_to 'Edit', edit_user_path(user) , class: 'btn btn-info' %> <% if user.deactivated %> <%= link_to 'Activate', user_path(user) , method: :delete, data: {confirm: 'Are you sure you want to activate this user?'},class: 'btn btn-light' %> <%else%> <%= link_to 'Deactivate', user_path(user) , method: :delete, data: {confirm: 'Are you sure you want to deactivate this user?'},class: 'btn btn-danger' %> <%end%> </p></td>
 				  </tr></div>
 			<% end %>
 		  </tbody>

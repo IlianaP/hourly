@@ -1,31 +1,65 @@
-<div class="sign-in-container">
 
-<div class="left-col">
-  <a class="navbar-brand" href="#">HYPERSPACE<span class = "font-weight-lighter">LOG</span></a>
-  <h2 class = "quote"> Today is a beautiful day to build something cool. </h2>
-</div>
-<div class="right-col">
-  <div class = "sign-in-form-container">
-      <h2>Log in</h2>
-      <br />
-      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="form-inputs">
-          <%= f.input :email,
-                      required: false,
-                      autofocus: true,
-                      input_html: { autocomplete: "email" } %>
-          <%= f.input :password,
-                      required: false,
-                      input_html: { autocomplete: "current-password" } %> </div>
-          <div class = "ml-4"> <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %></div>
+<body class="bg-gradient-primary">
 
-        <div class="form-actions">
-          <%= f.button :submit, "Log in", class: 'sign_in_btn' %>
+  <div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+      <div class="col-xl-10 col-lg-12 col-md-9">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Sign In</h1>
+                  </div>
+                  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                                            <div class="form-inputs">
+                                              <%= f.input :email,
+                                                          required: false,
+                                                          autofocus: true,
+                                                          label: false,
+                                                          input_html: { autocomplete: "email" }, class: "form-control form-control-user", id: "exampleInputEmail", placeholder: "Enter email address..."  %>
+                                              <%= f.input :password,
+                                                          label: false,
+                                                          required: false,
+                                                          input_html: { autocomplete: "current-password" }, class: "form-control form-control-user", id: "exampleInputPassword",  placeholder: "Password" %> </div>
+                                              <div class = "ml-4"> <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %></div>
+
+                                            <div class="form-actions">
+                                              <%= f.button :submit, "Log in", class: 'btn btn-primary btn-block' %>
+                                            </div>
+                                        <% end %>
+                    <hr> 
+                    <%= render "devise/shared/links" %>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      <% end %>
-        <br />
-      <%= render "devise/shared/links" %>
-    </div>
+
       </div>
+
+    </div>
+
   </div>
-</div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="js/sb-admin-2.min.js"></script>
+
+</body>
+
+
+

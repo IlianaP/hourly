@@ -1,0 +1,7 @@
+
+
+<%- headers = ['Name', 'Description', 'Hours', 'Project'] -%>
+<%= CSV.generate_line headers %>
+<%- @hourlogs.each do |hourlog| -%>
+  <%= CSV.generate_line([hourlog.name, hourlog.description, hourlog.hours, hourlog.project.name]) %>
+<%- end -%>

@@ -7,6 +7,16 @@
 	</div>
 </div>
 
+<div class="row"> 
+	<div class="col-10"> 
+		<div class="page_info">
+	      <%= page_entries_info @projects %>
+	    </div>
+	</div>
+	<div class="col-2"> 
+		<%= will_paginate @projects, :container => false, :page_links => false %>
+	</div>
+</div>
 
 <div class = "row">
 	<div class="col"> 
@@ -22,6 +32,7 @@
 		      <th scope="col">Duration</th>
 		      <th scope="col">Count hours from</th>
 		      <th scope="col">Hours Worked</th>
+		      <th scope="col">%</th>
 		      <th scope="col">Actions</th>
 		    </tr>
 		  </thead>
@@ -33,14 +44,21 @@
 						🏁
 				  		<% end %>
 				  	</p></td>
-				    <td><p><%= link_to project.name, edit_project_path(project) %></p></td>
+				    <td><p><%= link_to project.name, edit_project_path(project), class: "btn btn-light" %></p></td>
 				    <td><i><%= project.description %></i></td>
 				    <td><p><%= project.plan %></p></td>
 				    <td><p><%= project.planhours %></p></td>
 				    <td><p><%= project.plandate.strftime('%B %d, %Y') %></p></td>
 				    <td><p><%= project.duration %> months</p></td>
 				    <td><p><%= project.starthourtrack.strftime('%B %d, %Y') %></p></td>
-				    <td><p><%= link_to @hourlogs.where(project_id: project.id, date: project.starthourtrack..project.starthourtrack+1.month-1.day).sum(:hours), project_path(project) %> </p></td>
+				    <td><p><%= link_to @hourlogs.where(project_id: project.id, date: project.starthourtrack..project.starthourtrack+1.month-1.day).sum(:hours), project_path(project), class: "btn btn-light" %> </p></td>
+				    <td><% if project.planhours != 0 %> 
+				    	<p>
+				    	<%= ((@hourlogs.where(project_id: project.id, date: project.starthourtrack..project.starthourtrack+1.month-1.day).sum(:hours)).to_f/(project.planhours)).round(2)*100 %>% </p>
+				    	<% else %> 
+				    	<p> NA </p>
+				    	<% end %> 
+				    </td>
 
 				    <td><p><%= link_to 'Delete', project_path(project), method: :delete, data: {confirm: 'Are you sure you want to delete this? You cannot recover the project, and all associated hourlogs will be deleted.'},class: 'btn btn-danger' %></p></td>
 				  </tr></div>

@@ -1,16 +1,27 @@
 <div class= "container p-3"> 
 <div class="booyah-box col-10 offset-1">
-  <h1>Log your hours</h1>
+  <h1>Edit your Entry</h1>
+
   <%= simple_form_for @hourlog do |f| %>
-    <%= f.input :name %>
-    <%= f.collection_select :project_id, @projects, :id, :name %>
-    <%= f.input :description %>
-    <%= f.input :hours %>
+    <%= f.input :name, :input_html => { :value => @current_user.fname + ' ' + @current_user.lname} %>
+    <div class="row">
+        <div class ="col-6">
+          <%= f.input :project_id, :collection => @projects, label_method: :name, value_method: :id, label: "Choose Project", include_blank: true %>
+        </div>
+        <div class ="col-6">
+          <%= f.input :description, label: "I worked on" %>
+        </div>
+    </div>
+    <div class="row">
+      <div class ="col-6">
+        <%= f.input :hours %>
+      </div>
+      <div class ="col-6">
+        <%= f.input :date, as: :date, html5: true %>
+      </div>
+    </div>
   <br />
-  <%= f.input :date, as: :date, start_year: Date.today.year - 1,
-                              end_year: Date.today.year + 1, discard_day: false,
-                              order: [:day, :month, :year] %>
-    <%= f.submit 'Update' %>
+    <%= f.submit 'Update', class: 'btn btn-primary' %>
   <% end %>
 </div>
 </div>

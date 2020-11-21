@@ -9,4 +9,14 @@ class Hourlog < ApplicationRecord
 	validates :date, presence: true
 	validates :project, presence: true
 
+	  def self.to_csv
+	    CSV.generate do |csv|
+	      column_names = %w(Project Name Description Hours Date)
+	      csv << column_names
+	      all.each do |hourlog|
+	        csv << [hourlog.project.name, hourlog.name, hourlog.description, hourlog.hours, hourlog.date.strftime('%B %d, %Y')]
+	      end
+	    end
+	  end
+
 end
